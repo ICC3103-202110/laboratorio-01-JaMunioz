@@ -8,17 +8,17 @@ def Mostrar(matriz):
         print()
     print("")
 
-def Girar():
+def Girar(m):
     while True:
         while True:
             A = input("Choose some card using the respective coords (ex: ´0,i´ or ´1,i´ | i length of the row): ")
             try:  
                 a = int(A.split(",")[0])
                 b = int(A.split(",")[1])
-                if a >= 2 or a <= -1:
-                    print("The first number just could be: ´0´ or ´1´")
-                elif b >= c or b <= -1:
-                    print("The second number after the ´,´ just can be between ´0´ and "+str(c-1))
+                if a >= len(m) or a <= -1:
+                    print("The first number after the ´,´ just can be between ´0´ and ´"+str(len(m)-1))+"´"
+                elif b >= len(m) or b <= -1:
+                    print("The second number after the ´,´ just can be between ´0´ and ´"+str(len(m)-1))+"´"
                 else:
                     break
             except :
@@ -93,15 +93,37 @@ for i in range(1,len(M[0])+1):
 Mostrar(M)
 Mostrar(mc)
 
-a,b = Girar()
-mc[a].pop(b)
-mc[a].insert(b,M[a][b])
-Mostrar(mc)
+p = 0
+while True:
+    p += 1
+    while True: 
+        a,b = Girar(mc)
+        if mc[a][b] == " ":
+            print("In this coord dont have any card, give some new coord for continue..")
+        else:
+            break
+    mc[a].pop(b)
+    mc[a].insert(b,M[a][b])
+    A = M[a][b]
+    Mostrar(mc)
 
-a,b = Girar()
-mc[a].pop(b)
-mc[a].insert(b,M[a][b])
-Mostrar(mc)
-#points of the players
-p1 = 0 
-p2 = 0
+    while True: 
+        c,d = Girar(mc)
+        if mc[c][d] == " ":
+            print("In this coord dont have any card, give some new coord for continue..")
+        elif a == c and b == d:
+            print("u was give the same coord again..")
+        else:
+            break
+    mc[c].pop(d)
+    mc[c].insert(d,M[c][d])
+    B = M[c][d]
+    Mostrar(mc)
+    break
+
+"""
+    if A == B and p:
+        #points of the players
+        p1 = 0 
+        p2 = 0
+"""
