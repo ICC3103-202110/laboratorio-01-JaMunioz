@@ -15,13 +15,13 @@ def Girar(m):
             try:  
                 a = int(A.split(",")[0])
                 b = int(A.split(",")[1])
-                if a >= len(m) or a <= -1:
-                    print("The first number after the ´,´ just can be between ´0´ and ´"+str(len(m)-1))+"´"
-                elif b >= len(m) or b <= -1:
-                    print("The second number after the ´,´ just can be between ´0´ and ´"+str(len(m)-1))+"´"
+                if a > len(m) or a <= -1:
+                    print("The first number after the ´,´ just can be between ´0´ and ´"+str(len(m)))+"´"
+                elif b > len(m) or b <= -1:
+                    print("The second number after the ´,´ just can be between ´0´ and ´"+str(len(m)))+"´"
                 else:
                     break
-            except :
+            except:
                 print("if u want continue with this game just use numbers..")
         break
     return (a,b)
@@ -72,9 +72,7 @@ for i in range(v):
 R = []
 for i in range(len(M[0])):
     R.append(" ")
-print(R)
-print(M)
-print(mc)
+
 
 while True:
     if M[-1] == R:
@@ -90,12 +88,14 @@ for i in range(1,len(M[0])+1):
     else:
         break
 
-Mostrar(M)
 Mostrar(mc)
 
-p = 0
+#points of the players
+p1 = 0 
+p2 = 0
+p = 0 #id
 while True:
-    p += 1
+    MC = mc
     while True: 
         a,b = Girar(mc)
         if mc[a][b] == " ":
@@ -119,11 +119,54 @@ while True:
     mc[c].insert(d,M[c][d])
     B = M[c][d]
     Mostrar(mc)
-    break
 
-"""
-    if A == B and p:
-        #points of the players
-        p1 = 0 
-        p2 = 0
-"""
+    if A == B and p % 2 == 0:
+        p1 += 2
+        mc[a].pop(b)
+        mc[a].insert(b," ")
+        mc[c].pop(d)
+        mc[c].insert(d," ")
+    elif A == B and p % 2 != 0:
+        p2 += 2
+        mc[a].pop(b)
+        mc[a].insert(b," ")
+        mc[c].pop(d)
+        mc[c].insert(d," ")
+    else:
+        mc[a].pop(b)
+        mc[a].insert(b,"*")
+        mc[c].pop(d)
+        mc[c].insert(d,"*")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    
+    Mostrar(mc)
+
+    ma= float(len(mc)*len(mc[0]))
+    if p1 >= ma/2:
+        print("The winner is the first player, with score of: "+str(p1/2))
+        print("and.. the score of the second player was: "+str(p2/2))
+        break
+    elif p2 >= ma/2:
+        print("The winner is the second player, with score of: "+str(p2/2))
+        print("and.. the score of the first player was: "+str(p1/2))
+        break
+    elif (p1+p2) == int(ma-2):
+        if p % 2 == 0:
+            p += 2
+            print("The winner is the first player, with score of: "+str(p1/2))
+            print("and.. the score of the second player was: "+str(p2/2))
+        else:
+            p += 2
+            print("The winner is the second player, with score of: "+str(p2/2))
+            print("and.. the score of the first player was: "+str(p1/2))
+    p += 1
+
+
+
+    
