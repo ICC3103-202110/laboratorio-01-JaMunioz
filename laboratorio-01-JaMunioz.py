@@ -137,14 +137,7 @@ while True:
         mc[a].insert(b,"*")
         mc[c].pop(d)
         mc[c].insert(d,"*")
-    print("")
-    print("")
-    print("")
-    print("")
-    print("")
-    print("")
-    print("")
-    
+
     Mostrar(mc)
 
     ma= float(len(mc)*len(mc[0]))
@@ -166,7 +159,3 @@ while True:
             print("The winner is the second player, with score of: "+str(p2/2))
             print("and.. the score of the first player was: "+str(p1/2))
     p += 1
-
-
-
-    
